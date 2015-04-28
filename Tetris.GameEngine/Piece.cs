@@ -6,6 +6,7 @@ namespace Tetris.GameEngine
     {
         #region Private Fields
 
+        // Review VV: "private" modifier should be used
         int[,] _piece;
         int _initPosX;
         int _initPosY;
