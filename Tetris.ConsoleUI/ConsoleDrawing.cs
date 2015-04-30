@@ -24,6 +24,9 @@ namespace TetrisConsoleUI
 
         public void DrawScene(Game game)
         {
+            /*
+             * Reivew VV: для чого тут слід використовувати критичну секцію?
+             */
             lock (game)
             {
                 //Current Position
@@ -92,6 +95,9 @@ namespace TetrisConsoleUI
             }
         }
 
+        /*
+         * Review VV: чому ця функція статична?
+         */
         private static void ShowLines(Game game)
         {
             Console.CursorLeft = game.ActualBoard.Width + 4;
@@ -99,6 +105,9 @@ namespace TetrisConsoleUI
             Console.WriteLine("Lines: {0}", game.Lines);
         }
 
+        /*
+         * Review VV: чому ця функція статична?
+         */
         private static void ShowScore(Game game)
         {
             Console.CursorLeft = game.ActualBoard.Width + 4;
@@ -168,6 +177,10 @@ namespace TetrisConsoleUI
             }
         }
 
+
+        /*
+         * Review VV: чому ця функція статична?
+         */
         /// <summary>
         /// Writes a String in the Specified foreground color,
         /// then switches the Color back

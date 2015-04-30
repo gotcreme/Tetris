@@ -3,6 +3,16 @@ using System.Collections.Generic;
 
 namespace Tetris.GameEngine
 {
+    /*
+     * Review VV: 
+     *      - виділення окремої фабрики для фігурок - правильне рішення
+     *      
+     *      Рекомендую скористатися принципом Dependency Inversion:
+     *          - реалізувати фабрику як нестатичний клас
+     *          - виділити для неї інтерфейс IPieceFactory
+     *          - передавати екземпляр фабрики як параметр конструктора у Game
+     *          - але список _pieces варто залишити статичним
+     */
     public static class PieceFactory
     {
         #region Private Fields

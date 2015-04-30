@@ -5,6 +5,7 @@ namespace Tetris.GameEngine
 {
     public class Game: IMovable, IMode
     {
+        // Review VV: рекомендую замінити "static readonly" на "const"
         private static readonly int _board_width = 10;
         private static readonly int _board_height = 20;
 
@@ -21,6 +22,7 @@ namespace Tetris.GameEngine
         /// <summary>
         /// The Playfield
         /// </summary>
+        // Review VV: невірне іменування: слід замінити на _gameBoard
         private Board _game_board;
         private GameStatus _status;
         private Piece _currPiece;
@@ -66,6 +68,9 @@ namespace Tetris.GameEngine
 
         public void Pause()
         {
+            /*
+             * Review VV: чи можна викликати цей метод, якщо гра знаходиться у статусах ReadyToStart чи Finished?
+             */
             if (this._status == GameStatus.InProgress)
             {
                 this._status = GameStatus.Paused;
@@ -105,6 +110,11 @@ namespace Tetris.GameEngine
             }
         }
 
+        /*
+         * Reivew VV: What does this method do?
+         * Is it correct to use Clone()?
+         * Is there more optimal approach?
+         */
         public Board ActualBoard
         {
             get
@@ -253,11 +263,17 @@ namespace Tetris.GameEngine
 
         #region IMode Implementation
 
+        /*
+         * Review VV: what is the purpose of it?
+         */
         public bool NextPieceMode
         {
             get; set;
         }
 
+        /*
+         * Review VV: what is the purpose of it?
+         */
         public bool ShadowPieceMode
         {
             get; set;

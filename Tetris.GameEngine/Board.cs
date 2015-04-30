@@ -27,6 +27,7 @@ namespace Tetris.GameEngine
             }
             else
             {
+                // Reivew VV: рекомендую валідацію писати на початку методу і брати в регіон "Valiation"
                 throw new ArgumentException("Board must be at least 10x20");
             }
         }
@@ -144,6 +145,8 @@ namespace Tetris.GameEngine
         {
             get
             {
+                // Review VV: чому тут слід використовувати Array.GetUpperBound()? 
+                // Чи є альтернативни цій функції?
                 return _mBoard.GetUpperBound(0) + 1;
             }
         }
@@ -152,6 +155,8 @@ namespace Tetris.GameEngine
         {
             get
             {
+                // Review VV: чому тут слід використовувати Array.GetUpperBound()? 
+                // Чи є альтернативни цій функції?
                 return _mBoard.GetUpperBound(1) + 1;
             }
         }
