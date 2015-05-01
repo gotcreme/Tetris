@@ -43,6 +43,10 @@ namespace Tetris.GameEngine
         /// </summary>
         /// <param name="ID">ID of Piece (0-6)</param>
         /// <returns>the Piece (or null if invalid Value)</returns>
+        /// 
+        /*
+            Review VV: ID повинно бути маленькими літерами - id
+        */
         public static Piece GetPiecebyId(int ID)
         {
             if (_pieces.Count > ID && ID >= 0)
