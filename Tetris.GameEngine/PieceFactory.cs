@@ -3,6 +3,16 @@ using System.Collections.Generic;
 
 namespace Tetris.GameEngine
 {
+    /*
+     * Review VV: 
+     *      - виділення окремої фабрики для фігурок - правильне рішення
+     *      
+     *      Рекомендую скористатися принципом Dependency Inversion:
+     *          - реалізувати фабрику як нестатичний клас
+     *          - виділити для неї інтерфейс IPieceFactory
+     *          - передавати екземпляр фабрики як параметр конструктора у Game
+     *          - але список _pieces варто залишити статичним
+     */
     public static class PieceFactory
     {
         #region Private Fields
@@ -33,6 +43,10 @@ namespace Tetris.GameEngine
         /// </summary>
         /// <param name="ID">ID of Piece (0-6)</param>
         /// <returns>the Piece (or null if invalid Value)</returns>
+        /// 
+        /*
+            Review VV: ID повинно бути маленькими літерами - id
+        */
         public static Piece GetPiecebyId(int ID)
         {
             if (_pieces.Count > ID && ID >= 0)

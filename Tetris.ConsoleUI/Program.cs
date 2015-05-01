@@ -21,6 +21,10 @@ namespace TetrisConsoleUI
 
             drawer = new ConsoleDrawing();
 
+            /*
+             * Review VV: чому тут використовується статична функція?
+             * Чи можна це замінити на drawer.ShowControls()?
+             */
             ConsoleDrawing.ShowControls();
 
             Console.ReadKey(true);

@@ -41,6 +41,9 @@ namespace Tetris.GameEngine.Test
             Assert.IsNotNull(gen_piece);
         }
 
+        /*
+         * Review VV: цей метод повністю повторює функціональність першого - TestInitialization()
+         */
         [TestMethod]
         public void TestGetCount()
         {

@@ -5,7 +5,11 @@ namespace Tetris.GameEngine
     public class Piece: ICloneable
     {
         #region Private Fields
-
+        /*
+         * Review VV: слід додати модифікатор доступу 'private'.
+         * Це питання стилю.
+         * Я рекомендую завжди явно вказувати специфікатор доступу.
+         */ 
         int[,] _piece;
         int _initPosX;
         int _initPosY;
@@ -20,6 +24,7 @@ namespace Tetris.GameEngine
             {
                 throw new NullReferenceException();
             }
+            // Reive VV: для чого потрібно клонувати цей масив?
             _piece = (int[,])p.Clone();
             _initPosY = (p.GetUpperBound(0) + 1) * -1;
             _initPosX = 0;
