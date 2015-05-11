@@ -31,13 +31,13 @@ namespace Tetris.GameEngine
         /// <summary>
         /// Returns a specific Piece
         /// </summary>
-        /// <param name="ID">ID of Piece (0-6)</param>
+        /// <param name="id">ID of Piece (0-6)</param>
         /// <returns>the Piece (or null if invalid Value)</returns>
-        public static Piece GetPiecebyId(int ID)
+        public static Piece GetPiecebyId(int id)
         {
-            if (_pieces.Count > ID && ID >= 0)
+            if (_pieces.Count > id && id >= 0)
             {
-                return _pieces[ID];
+                return _pieces[id];
             }
             return null;
         }

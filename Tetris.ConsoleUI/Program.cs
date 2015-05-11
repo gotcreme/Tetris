@@ -7,11 +7,11 @@ namespace TetrisConsoleUI
 {
     class TetrisConsoleUI
     {
-        static Game game;
-        static ConsoleDrawing drawer;
-        static System.Timers.Timer game_timer;
-        static int _timerCounter = 0;
-        static readonly int _timerStep = 10;
+        private static Game _game;
+        private static  ConsoleDrawing _drawer;
+        private static  System.Timers.Timer _gameTimer;
+        private static int _timerCounter = 0;
+        private static readonly int _timerStep = 10;
 
         static int Main(string[] args)
         {
@@ -19,32 +19,32 @@ namespace TetrisConsoleUI
             Console.Clear();
             Console.CursorVisible = false;
 
-            drawer = new ConsoleDrawing();
+            _drawer = new ConsoleDrawing();
 
             ConsoleDrawing.ShowControls();
 
             Console.ReadKey(true);
             Console.Clear();
 
-            game = new Game();
-            game.Start();
-            game_timer = new System.Timers.Timer(800);
-            game_timer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            game_timer.Start();
+            _game = new Game();
+            _game.Start();
+            _gameTimer = new System.Timers.Timer(800);
+            _gameTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            _gameTimer.Start();
 
-            drawer.DrawScene(game);
+            _drawer.DrawScene(_game);
 
-            while (game.Status != Game.GameStatus.Finished)
+            while (_game.Status != Game.GameStatus.Finished)
             {
                 if (Console.KeyAvailable)
                 {
                     KeyPressedHandler( Console.ReadKey(true) );
-                    drawer.DrawScene(game);
-                    game_timer.Enabled = true;
+                    _drawer.DrawScene(_game);
+                    _gameTimer.Enabled = true;
                 }
             }
-            game_timer.Stop();
-            drawer.ShowGameOver(game);
+            _gameTimer.Stop();
+            _drawer.ShowGameOver(_game);
 
             Console.ResetColor();
             Console.CursorVisible = true;
@@ -56,39 +56,39 @@ namespace TetrisConsoleUI
             switch (input_key.Key)
             {
                 case ConsoleKey.LeftArrow:
-                    if (game.Status != Game.GameStatus.Paused)
-                        game.MoveLeft();
+                    if (_game.Status != Game.GameStatus.Paused)
+                        _game.MoveLeft();
                     break;
                 case ConsoleKey.RightArrow:
-                    if (game.Status != Game.GameStatus.Paused)
-                        game.MoveRight();
+                    if (_game.Status != Game.GameStatus.Paused)
+                        _game.MoveRight();
                     break;
                 case ConsoleKey.UpArrow:
-                    if (game.Status != Game.GameStatus.Paused)
-                        game.Rotate();
+                    if (_game.Status != Game.GameStatus.Paused)
+                        _game.Rotate();
                     break;
                 case ConsoleKey.DownArrow:
-                    if (game.Status != Game.GameStatus.Paused)
+                    if (_game.Status != Game.GameStatus.Paused)
                     {
-                        game.MoveDown();
-                        game_timer.Enabled = false;
+                        _game.MoveDown();
+                        _gameTimer.Enabled = false;
                     }
                     break;
                 case ConsoleKey.Spacebar:
-                    if (game.Status != Game.GameStatus.Paused)
-                        game.SmashDown();
+                    if (_game.Status != Game.GameStatus.Paused)
+                        _game.SmashDown();
                     break;
                 case ConsoleKey.N:
-                    game.NextPieceMode = !game.NextPieceMode;
+                    _game.NextPieceMode = !_game.NextPieceMode;
                     break;
                 case ConsoleKey.G:
-                    game.ShadowPieceMode = !game.ShadowPieceMode;
+                    _game.ShadowPieceMode = !_game.ShadowPieceMode;
                     break;
                 case ConsoleKey.P:
-                    game.Pause();
+                    _game.Pause();
                     break;
                 case ConsoleKey.Escape:
-                    game.GameOver();
+                    _game.GameOver();
                     break;
                 default:
                     break;
@@ -97,22 +97,22 @@ namespace TetrisConsoleUI
 
         private static void OnTimedEvent(object source, ElapsedEventArgs e)
         {
-            if (game.Status != Game.GameStatus.Finished)
+            if (_game.Status != Game.GameStatus.Finished)
             {
-                if (game.Status != Game.GameStatus.Paused)
+                if (_game.Status != Game.GameStatus.Paused)
                 {
                     _timerCounter += _timerStep;
-                    game.MoveDown();
-                    if (game.Status == Game.GameStatus.Finished)
+                    _game.MoveDown();
+                    if (_game.Status == Game.GameStatus.Finished)
                     {
-                        game_timer.Stop();
+                        _gameTimer.Stop();
                     }
                     else
                     {
-                        drawer.DrawScene(game);
-                        if (_timerCounter >= 1000 - (game.Lines * 10))
+                        _drawer.DrawScene(_game);
+                        if ( _timerCounter >= ( 1000 - (_game.Lines * 10) ) )
                         {
-                            game_timer.Interval -= 50;
+                            _gameTimer.Interval -= 50;
                             _timerCounter = 0;
                         }
                     }

@@ -6,9 +6,9 @@ namespace Tetris.GameEngine
     {
         #region Private Fields
 
-        int[,] _piece;
-        int _initPosX;
-        int _initPosY;
+        private int[,] _piece;
+        private int _initPosX;
+        private int _initPosY;
 
         #endregion
 
@@ -18,7 +18,7 @@ namespace Tetris.GameEngine
         {
             if (p == null)
             {
-                throw new NullReferenceException();
+                throw new ArgumentNullException();
             }
             _piece = (int[,])p.Clone();
             _initPosY = (p.GetUpperBound(0) + 1) * -1;
@@ -109,7 +109,7 @@ namespace Tetris.GameEngine
         {
             get 
             {
-                if (h < 0 || h >= this.Height || w < 0 || w >= this.Width)
+                if ( ( h < 0 ) || ( h >= this.Height ) || ( w < 0 ) || ( w >= this.Width ) )
                 {
                     throw new IndexOutOfRangeException("Index is out of range!");
                 }

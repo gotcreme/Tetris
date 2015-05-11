@@ -41,7 +41,6 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="Interfaces\IDrawing.cs" />
     <Compile Include="Interfaces\IMode.cs" />
     <Compile Include="Interfaces\IMovable.cs" />
     <Compile Include="Piece.cs" />

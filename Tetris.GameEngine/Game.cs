@@ -5,8 +5,8 @@ namespace Tetris.GameEngine
 {
     public class Game: IMovable, IMode
     {
-        private static readonly int _board_width = 10;
-        private static readonly int _board_height = 20;
+        private const int _board_width = 10;
+        private const int _board_height = 20;
 
         public enum GameStatus
         {
@@ -21,7 +21,7 @@ namespace Tetris.GameEngine
         /// <summary>
         /// The Playfield
         /// </summary>
-        private Board _game_board;
+        private Board _gameBoard;
         private GameStatus _status;
         private Piece _currPiece;
         private Piece _nextPiece;
@@ -37,7 +37,7 @@ namespace Tetris.GameEngine
 
         public Game()
         {
-            _game_board = new Board(_board_width, _board_height);
+            _gameBoard = new Board(_board_width, _board_height);
             
             _currPiece = null;
             _nextPiece = null;
@@ -70,9 +70,13 @@ namespace Tetris.GameEngine
             {
                 this._status = GameStatus.Paused;
             }
-            else 
+            else if (this._status == GameStatus.Paused)
             {
                 this._status = GameStatus.InProgress;
+            }
+            else 
+            {
+                return;
             }
         }
 
@@ -111,9 +115,9 @@ namespace Tetris.GameEngine
             {
                 if (this.Status == GameStatus.ReadyToStart)
                 {
-                    return this._game_board;
+                    return this._gameBoard;
                 }
-                Board tmp_board = (Board)_game_board.Clone();
+                Board tmp_board = (Board)_gameBoard.Clone();
                 Piece tmp_piece = (Piece)_currPiece.Clone();
                 
                 if (ShadowPieceMode == true)
@@ -174,18 +178,32 @@ namespace Tetris.GameEngine
         {
             if (this.Status == GameStatus.InProgress)
             {
-                if (_game_board.CanPosAt(_currPiece, _posX, _posY + 1))
+                if (_gameBoard.CanPosAt(_currPiece, _posX, _posY + 1))
                 {
                     _posY++;
                 }
                 else
                 {
-                    _game_board.FixPiece(_currPiece, _posX, _posY);
-                    int tmp_lines_made = _game_board.CheckLines();
-                    _lines += tmp_lines_made;
-                    _score += 40 * tmp_lines_made;
+                    _gameBoard.FixPiece(_currPiece, _posX, _posY);
+                    int currLinesMade = _gameBoard.CheckLines();
+                    _lines += currLinesMade;
+                    switch (currLinesMade)
+                    {
+                        case 1:
+                            _score += 40;
+                            break;
+                        case 2:
+                            _score += 100;
+                            break;
+                        case 3:
+                            _score += 300;
+                            break;
+                        case 4:
+                            _score += 1200;
+                            break;
+                    }
 
-                    if (_game_board.IsTopReached())
+                    if (_gameBoard.IsTopReached())
                     {
                         GameOver();
                     }
@@ -200,9 +218,9 @@ namespace Tetris.GameEngine
         private void DropNewPiece()
         {
             _rnd = new Random(DateTime.Now.Millisecond);
-            _currPiece = _nextPiece != null ? _nextPiece : PieceFactory.GetRandomPiece(_rnd);
+            _currPiece = ( _nextPiece != null ) ? _nextPiece : PieceFactory.GetRandomPiece(_rnd);
             _posY = _currPiece.InitPosY;
-            _posX = ( _game_board.Width - 1 ) / 2 + _currPiece.InitPosX;
+            _posX = ( ( _gameBoard.Width - 1 ) / 2 ) + _currPiece.InitPosX;
             _nextPiece = PieceFactory.GetRandomPiece(_rnd);
         }
 
@@ -212,7 +230,7 @@ namespace Tetris.GameEngine
 
         public void MoveRight()
         {
-            if (_game_board.CanPosAt(_currPiece, _posX + 1, _posY))
+            if (_gameBoard.CanPosAt(_currPiece, _posX + 1, _posY))
             {
                 _posX++;
             }
@@ -220,7 +238,7 @@ namespace Tetris.GameEngine
 
         public void MoveLeft()
         {
-            if (_game_board.CanPosAt(_currPiece, _posX - 1, _posY))
+            if (_gameBoard.CanPosAt(_currPiece, _posX - 1, _posY))
             {
                 _posX--;
             }
@@ -233,7 +251,7 @@ namespace Tetris.GameEngine
 
         public void SmashDown()
         {
-            while (_game_board.CanPosAt(_currPiece, _posX, _posY + 1))
+            while (_gameBoard.CanPosAt(_currPiece, _posX, _posY + 1))
             {
                 Step();
             }
@@ -243,7 +261,7 @@ namespace Tetris.GameEngine
         public void Rotate()
         {
             Piece tmp_piece = _currPiece.RotateRight();
-            if (_game_board.CanPosAt(tmp_piece, _posX, _posY))
+            if (_gameBoard.CanPosAt(tmp_piece, _posX, _posY))
             {
                 _currPiece = tmp_piece;
             }

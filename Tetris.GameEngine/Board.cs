@@ -14,7 +14,7 @@ namespace Tetris.GameEngine
 
         public Board(int width, int height)
         {
-            if (width >= 10 && height >= 20)
+            if ( ( width >= 10 ) && ( height >= 20 ) )
             {
                 _mBoard = new int[height, width];
                 for (int i = 0; i < _mBoard.GetUpperBound(0) + 1; i++)
@@ -37,7 +37,7 @@ namespace Tetris.GameEngine
 
         public void FixPiece(Piece piece, int x, int y)
         {
-            if (x >= 0 && x + piece.Width <= this.Width && y + piece.Height <= this.Height)
+            if ( ( x >= 0 ) && ( ( x + piece.Width ) <= this.Width ) && ( ( y + piece.Height ) <= this.Height ) )
             {
                 for (int i = 0; i < piece.Width; i++)
                 {
@@ -45,11 +45,7 @@ namespace Tetris.GameEngine
                     {
                         //I=Y Coord
                         //J=X Coord
-                        if (y + j < 0)
-                        {
-                            continue;
-                        }
-                        if (piece[j, i] != 0)
+                        if ( ( piece[j, i] != 0 ) && ( y + j >= 0 ) )
                         {
                             _mBoard[y + j, x + i] = piece[j, i];
                         }
@@ -65,7 +61,7 @@ namespace Tetris.GameEngine
                 bool isFullLine = true;
                 for (int j = 0; j < this.Width; j++)
                 {
-                    isFullLine = isFullLine && _mBoard[i, j] != 0;
+                    isFullLine = ( isFullLine ) && ( _mBoard[i, j] != 0 );
                 }
                 if (isFullLine)
                 {
@@ -78,19 +74,15 @@ namespace Tetris.GameEngine
 
         public bool CanPosAt(Piece piece, int x, int y)
         {
-            if (x >= 0 && x + piece.Width <= this.Width && y + piece.Height <= this.Height)
+            if ( ( x >= 0 ) && ( ( x + piece.Width ) <= this.Width ) && ( ( y + piece.Height ) <= this.Height ) )
             {
                 for (int i = 0; i < piece.Width; i++)
                 {
                     for (int j = 0; j < piece.Height; j++)
                     {
-                        //I=X Coord
-                        //J=Y Coord
-                        if (y + j < 0)
-                        {
-                            continue;
-                        }
-                        if (piece[j, i] != 0)
+                        //I=Y Coord
+                        //J=X Coord
+                        if ( ( piece[j, i] != 0 ) && ( y + j >= 0 ) )
                         {
                             if (!this.IsFreePos(y + j, x + i))
                             {
@@ -129,7 +121,6 @@ namespace Tetris.GameEngine
             {
                 add++;
             }
-
             if (posY + add - 1 > 0)
             {
                 this.FixPiece(piece, posX, posY + add - 1);
@@ -194,7 +185,7 @@ namespace Tetris.GameEngine
         {
             get 
             {
-                if (h < 0 || h >= this.Height || w < 0 || w >= this.Width)
+                if ( ( h < 0 ) || ( h >= this.Height ) || ( w < 0 ) || ( w >= this.Width ) )
                 {
                     throw new IndexOutOfRangeException("Index is out of range!");
                 }
