@@ -5,8 +5,8 @@ namespace Tetris.GameEngine
 {
     public class Game: IMovable, IMode
     {
-        private const int _board_width = 10;
-        private const int _board_height = 20;
+        private const int _default_board_width = 10;
+        private const int _default_board_height = 22;
 
         public enum GameStatus
         {
@@ -37,7 +37,7 @@ namespace Tetris.GameEngine
 
         public Game()
         {
-            _gameBoard = new Board(_board_width, _board_height);
+            _gameBoard = new Board(_default_board_width, _default_board_height);
             
             _currPiece = null;
             _nextPiece = null;

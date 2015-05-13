@@ -1,6 +1,7 @@
 ﻿using System;
 using Tetris.GameEngine.Interfaces;
 using Tetris.GameEngine;
+using Tetris.ConsoleUI.Interfaces;
 
 namespace TetrisConsoleUI
 {
