@@ -11,7 +11,7 @@ namespace Tetris.GameEngine.Test
         public void TestConstructor()
         {
             Piece piece = new Piece(new int[,] { { 1, 1, 1, 1 } });
-            Assert.IsNotNull(piece.ToArray());
+            Assert.IsNotNull(piece.ToArray);
             Assert.AreEqual(0, piece.InitPosX);
             Assert.AreEqual(-1, piece.InitPosY);
         }
@@ -30,7 +30,7 @@ namespace Tetris.GameEngine.Test
             Piece piece = new Piece(new int[,] { { 1, 1, 1, 1 } });
             Piece actual = piece.RotateRight();
             int[,] expected = new int[,] { { 1 }, { 1 }, { 1 }, { 1 } };
-            CollectionAssert.AreEqual(expected, actual.ToArray());
+            CollectionAssert.AreEqual(expected, actual.ToArray);
         }
 
         [TestMethod]
@@ -39,7 +39,7 @@ namespace Tetris.GameEngine.Test
             Piece actual = new Piece(new int[,] { { 1, 1, 1, 1 } });
             actual.MakeItShadow();
             int[,] expected = new int[,] { { 8, 8, 8, 8 } };
-            CollectionAssert.AreEqual(expected, actual.ToArray());
+            CollectionAssert.AreEqual(expected, actual.ToArray);
         }
 
         [TestMethod]
@@ -47,7 +47,7 @@ namespace Tetris.GameEngine.Test
         {
             Piece actual = new Piece(new int[,] { { 1, 1, 1, 1 } }); ;
             int[,] expected = new int[,] { { 1, 1, 1, 1 } };
-            CollectionAssert.AreEqual(expected, actual.ToArray());
+            CollectionAssert.AreEqual(expected, actual.ToArray);
         }
 
         [TestMethod]
@@ -109,7 +109,7 @@ namespace Tetris.GameEngine.Test
             Piece piece = new Piece(new int[,] { { 1, 1, 1, 1 } });
             Piece cloned_piece = (Piece)piece.Clone();
             Assert.AreNotSame(cloned_piece, piece);
-            CollectionAssert.AreEqual(cloned_piece.ToArray(), piece.ToArray());
+            CollectionAssert.AreEqual(cloned_piece.ToArray, piece.ToArray);
         }
     }
 }

@@ -108,11 +108,6 @@ namespace Tetris.GameEngine
             return false;
         }
 
-        public int[,] ToArray()
-        {
-            return _mBoard;
-        }
-
         public void FixShadowPiece(Piece piece, int posX, int posY)
         {
             piece.MakeItShadow();
@@ -144,6 +139,14 @@ namespace Tetris.GameEngine
             get
             {
                 return _mBoard.GetUpperBound(1) + 1;
+            }
+        }
+
+        public int[,] ToArray
+        {
+            get
+            {
+                return _mBoard;
             }
         }
 

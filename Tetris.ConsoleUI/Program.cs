@@ -8,8 +8,8 @@ namespace TetrisConsoleUI
     class TetrisConsoleUI
     {
         private static Game _game;
-        private static  ConsoleDrawing _drawer;
-        private static  System.Timers.Timer _gameTimer;
+        private static ConsoleDrawing _drawer;
+        private static System.Timers.Timer _gameTimer;
         private static int _timerCounter = 0;
         private static readonly int _timerStep = 10;
 
@@ -38,7 +38,7 @@ namespace TetrisConsoleUI
             {
                 if (Console.KeyAvailable)
                 {
-                    KeyPressedHandler( Console.ReadKey(true) );
+                    KeyPressedHandler(Console.ReadKey(true));
                     _drawer.DrawScene(_game);
                     _gameTimer.Enabled = true;
                 }
@@ -110,7 +110,7 @@ namespace TetrisConsoleUI
                     else
                     {
                         _drawer.DrawScene(_game);
-                        if ( _timerCounter >= ( 1000 - (_game.Lines * 10) ) )
+                        if (_timerCounter >= (1000 - (_game.Lines * 10)))
                         {
                             _gameTimer.Interval -= 50;
                             _timerCounter = 0;

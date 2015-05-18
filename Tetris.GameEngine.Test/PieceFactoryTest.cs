@@ -20,7 +20,7 @@ namespace Tetris.GameEngine.Test
             PieceFactory.Initialize();
             Piece actual = PieceFactory.GetPiecebyId(0);
             Piece expected = new Piece(new int[,] { { 1, 1, 1, 1 } });
-            CollectionAssert.AreEqual(expected.ToArray(), actual.ToArray());
+            CollectionAssert.AreEqual(expected.ToArray, actual.ToArray);
         }
 
         [TestMethod]

@@ -61,6 +61,14 @@ namespace Tetris.GameEngine
             }
         }
 
+        public int[,] ToArray
+        {
+            get
+            {
+                return _piece;
+            }
+        }
+
         #endregion
 
         #region Public Methods
@@ -94,11 +102,6 @@ namespace Tetris.GameEngine
                     }
                 }
             }
-        }
-
-        public int[,] ToArray()
-        {
-            return _piece;
         }
 
         #endregion

@@ -11,7 +11,7 @@ namespace Tetris.GameEngine.Test
         public void TestConstructor()
         {
             Board board = new Board(10, 20);
-            Assert.IsNotNull(board.ToArray());
+            Assert.IsNotNull(board.ToArray);
             Assert.AreEqual(10, board.Width);
             Assert.AreEqual(20, board.Height);
         }
@@ -160,7 +160,7 @@ namespace Tetris.GameEngine.Test
         public void TestToArray()
         {
             Board board = new Board(10, 20);
-            int[,] board_arr = board.ToArray();
+            int[,] board_arr = board.ToArray;
             Assert.IsNotNull(board_arr);
             Assert.AreEqual(20, board_arr.GetUpperBound(0) + 1);
             Assert.AreEqual(10, board_arr.GetUpperBound(1) + 1);
@@ -221,8 +221,8 @@ namespace Tetris.GameEngine.Test
         {
             Board board = new Board(10, 20);
             Board cloned_board = (Board)board.Clone();
-            Assert.AreNotSame(cloned_board.ToArray(), board.ToArray());
-            CollectionAssert.AreEqual(cloned_board.ToArray(), board.ToArray());
+            Assert.AreNotSame(cloned_board.ToArray, board.ToArray);
+            CollectionAssert.AreEqual(cloned_board.ToArray, board.ToArray);
         }
     }
 }

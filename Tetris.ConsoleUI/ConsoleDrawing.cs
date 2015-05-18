@@ -39,7 +39,7 @@ namespace TetrisConsoleUI
 
                 //Draw PlayField
                 Console.SetCursorPosition(posX, posY);
-                DrawArray(game.ActualBoard.ToArray(), true);
+                DrawArray(game.ActualBoard.ToArray, true);
 
                 //Draw next Block
                 Console.CursorLeft = game.ActualBoard.Width + 4;
@@ -49,7 +49,7 @@ namespace TetrisConsoleUI
                 {
                     Console.CursorLeft = game.ActualBoard.Width + 5;
                     Console.CursorTop = 3;
-                    DrawArray(game.NextPiece.ToArray(), false);
+                    DrawArray(game.NextPiece.ToArray, false);
                 }
 
                 //Back to the Future, err... Beginning
@@ -64,7 +64,6 @@ namespace TetrisConsoleUI
         {
             Console.Write(@"C# Console Tetris
     =======================================
-
     Controls:
     [→]       Move Block Right
     [←]       Move Block Left
@@ -75,9 +74,7 @@ namespace TetrisConsoleUI
     [N]       Turn Next Block on and off
     [P]       Pause Game
     [ESC]     Exit Game
-
     =======================================
-
     Press any Key to start...
     ");
 

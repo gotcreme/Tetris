@@ -174,7 +174,7 @@ namespace Tetris.GameEngine.Test
             game.Start();
             Piece expected = game.CurrPiece.RotateRight();
             game.Rotate();
-            CollectionAssert.AreEqual(expected.ToArray(), game.CurrPiece.ToArray());
+            CollectionAssert.AreEqual(expected.ToArray, game.CurrPiece.ToArray);
         }
 
         [TestMethod]
