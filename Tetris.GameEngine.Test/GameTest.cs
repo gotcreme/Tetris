@@ -73,7 +73,7 @@ namespace Tetris.GameEngine.Test
         {
             Game game = new Game();
             Assert.AreEqual(10, game.ActualBoard.Width);
-            Assert.AreEqual(20, game.ActualBoard.Height);
+            Assert.AreEqual(22, game.ActualBoard.Height);
         }
 
         [TestMethod]
