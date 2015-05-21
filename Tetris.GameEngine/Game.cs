@@ -5,6 +5,7 @@ namespace Tetris.GameEngine
 {
     public class Game: IMovable, IMode
     {
+        //AD:Coding Conventions,не коректно названі константи
         private const int _default_board_width = 10;
         private const int _default_board_height = 22;
 
@@ -63,7 +64,7 @@ namespace Tetris.GameEngine
             this._status = GameStatus.InProgress;
             DropNewPiece();
         }
-
+        //AD:General coding,в цій ситуації ,мабуть, варто викидати якийсь ексепшин.
         public void Pause()
         {
             if (this._status == GameStatus.InProgress)
@@ -74,7 +75,7 @@ namespace Tetris.GameEngine
             {
                 this._status = GameStatus.InProgress;
             }
-            else 
+            else
             {
                 return;
             }

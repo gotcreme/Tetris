@@ -8,6 +8,7 @@ namespace Tetris.DesktopUI.GamePages.Interfaces
 {
     interface ILoadable
     {
+        //AD:General coding,при генерації всюди варто було перевіряти на null
         event EventHandler<PageEventArgs> PageEventHandler;
     }
 }

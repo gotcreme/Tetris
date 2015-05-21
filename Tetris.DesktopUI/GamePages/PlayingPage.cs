@@ -17,6 +17,7 @@ namespace Tetris.DesktopUI.GamePages
         private Game _game = new Game();
         private Timer _gameTimer;
         private static int _timerCounter = 0;
+        //AD:Coding conventions,неправильна назва константи.
         private const int _timerStep = 10;
 
         public PlayingPage()
