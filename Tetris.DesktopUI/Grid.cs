@@ -16,7 +16,7 @@ namespace Tetris.DesktopUI
 
         private const int SIZE = 25;
         private const int SPACE = 1;
-
+       //AD:Coding conventions,неправильна приватного поля.
         private Panel[,] grid;
 
         private Form _parentForm;
