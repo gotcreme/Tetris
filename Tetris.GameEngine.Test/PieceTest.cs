@@ -17,7 +17,7 @@ namespace Tetris.GameEngine.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(NullReferenceException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void TestConstructor_Wrong_Parameter()
         {
             int[,] p = null;
